@@ -1,34 +1,32 @@
-package hops
+package extract
 
 import (
 	"fmt"
 )
 
-// ErrInvalidType is returned when an invald hops type is provided.
-var ErrInvalidType = fmt.Errorf("invalid hops type provided")
+// ErrInvalidType is returned when an invald extract type is provided.
+var ErrInvalidType = fmt.Errorf("invalid extract type provided")
 
 type Type string
 
 const (
-	Aroma       Type = "aroma"
-	Bittering   Type = "bittering"
-	DualPurpose Type = "dual purpose"
+	DME Type = "Dry Malt Extract (DME)"
+	LME Type = "Liquid Malt Extract (LME)"
 )
 
 // IsValid checks if the Type is valid.
 func (t Type) IsValid() bool {
 	switch t {
 	case
-		Aroma,
-		Bittering,
-		DualPurpose:
+		DME,
+		LME:
 		return true
 	default:
 		return false
 	}
 }
 
-// ParseType parses a string into a hops Type
+// ParseType parses a string into an extract Type
 func ParseType(s string) (Type, error) {
 	typ := Type(s)
 	if !typ.IsValid() {
