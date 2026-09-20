@@ -1,4 +1,4 @@
-package hops
+package common
 
 import (
 	"fmt"
