@@ -44,3 +44,8 @@ const (
 func (c Category) String() string {
 	return string(c)
 }
+
+// Equals checks if two Category values are equal
+func (c Category) Equals(other Category) bool {
+	return c == other
+}
