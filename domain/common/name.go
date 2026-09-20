@@ -11,7 +11,7 @@ var ErrInvalidName = fmt.Errorf("invalid name provided")
 // Name represents the name of an ingredient
 type Name string
 
-var validName = regexp.MustCompile(`^[a-zA-Z0-9À-ÿ\s\-_'®™]+$`)
+var validName = regexp.MustCompile(`^[a-zA-Z0-9À-ÿ\s\-_,'.()®™]+$`)
 
 // ParseName takes in a string and parses it to a Name.
 func ParseName(s string) (Name, error) {
