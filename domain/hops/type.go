@@ -1,6 +1,8 @@
 package hops
 
-import "fmt"
+import (
+	"fmt"
+)
 
 // ErrInvalidType is returned when an invald hosp type is provided.
 var ErrInvalidType = fmt.Errorf("invalid hops type provided")

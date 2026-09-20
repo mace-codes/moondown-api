@@ -1,5 +1,10 @@
 package beer
 
+import "fmt"
+
+// ErrInvalidCategory is returned when an invalid category is provided
+var ErrInvalidCategory = fmt.Errorf("invalid category provided")
+
 // Category represents a canonical BJCP beer style category.
 type Category string
 
@@ -39,6 +44,59 @@ const (
 	StrongEuropeanBeer          Category = "Strong European Beer"
 	WoodBeer                    Category = "Wood Beer"
 )
+
+// IsValid checks if the Category is valid.
+func (c Category) IsValid() bool {
+	switch c {
+	case
+		AlternativeFermentablesBeer,
+		AmberAndBrownAmericanBeer,
+		AmberBitterEuropeanBeer,
+		AmberMaltyEuropeanLager,
+		AmericanPorterAndStout,
+		AmericanWildAle,
+		BelgianAle,
+		BritishBitter,
+		BrownBritishBeer,
+		CzechLager,
+		DarkBritishBeer,
+		DarkEuropeanLager,
+		EuropeanSourAle,
+		FruitBeers,
+		GermanWheatBeer,
+		HistoricalBeer,
+		InternationalLager,
+		Ipa,
+		IrishBeer,
+		MonasticAle,
+		PaleAmericanAle,
+		PaleBitterEuropeanBeer,
+		PaleCommonwealthBeer,
+		PaleMaltyEuropeanLager,
+		ScottishAle,
+		SmokedBeer,
+		SpecialtyBeer,
+		SpicedBeer,
+		StandardAmericanBeer,
+		StrongAmericanAle,
+		StrongBelgianAle,
+		StrongBritishAle,
+		StrongEuropeanBeer,
+		WoodBeer:
+		return true
+	default:
+		return false
+	}
+}
+
+// ParseCategory parses a string into a Category
+func ParseCategory(s string) (Category, error) {
+	cat := Category(s)
+	if !cat.IsValid() {
+		return "", ErrInvalidCategory
+	}
+	return cat, nil
+}
 
 // String returns the string value of a beer category
 func (c Category) String() string {

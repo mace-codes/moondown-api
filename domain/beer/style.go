@@ -1,5 +1,10 @@
 package beer
 
+import "fmt"
+
+// ErrInvalidStyle is returned when a style provided is invalid
+var ErrInvalidStyle = fmt.Errorf("invalid style provided")
+
 // Style represents a canonical BJCP beer style name.
 type Style string
 
@@ -122,7 +127,147 @@ const (
 	WoodAgedBeer                       Style = "Wood-Aged Beer"
 )
 
+// IsValid checks if the Style is valid.
+func (s Style) IsValid() bool {
+	switch s {
+	case
+		Altbier,
+		AlternativeGrainBeer,
+		AlternativeSugarBeer,
+		AmericanAmberAle,
+		AmericanBarleywine,
+		AmericanBrownAle,
+		AmericanIPA,
+		AmericanLager,
+		AmericanLightLager,
+		AmericanPaleAle,
+		AmericanPorter,
+		AmericanStout,
+		AmericanStrongAle,
+		AmericanWheatBeer,
+		AustralianSparklingAle,
+		AutumnSeasonalBeer,
+		BalticPorter,
+		BelgianBlondAle,
+		BelgianDarkStrongAle,
+		BelgianDubbel,
+		BelgianGoldenStrongAle,
+		BelgianPaleAle,
+		BelgianSingle,
+		BelgianTripel,
+		BerlinerWeisse,
+		BestBitter,
+		BiereDeGarde,
+		BlondeAle,
+		BrettBeer,
+		BritishBrownAle,
+		BritishGoldenAle,
+		BritishStrongAle,
+		CaliforniaCommon,
+		ClassicStyleSmokedBeer,
+		CommercialSpecialtyBeer,
+		CreamAle,
+		CzechAmberLager,
+		CzechDarkLager,
+		CzechPaleLager,
+		CzechPremiumPaleLager,
+		DarkMild,
+		Doppelbock,
+		DoubleIPA,
+		DunklesBock,
+		DunklesWeissbier,
+		Eisbock,
+		EnglishBarleyWine,
+		EnglishIPA,
+		EnglishPorter,
+		ExperimentalBeer,
+		Festbier,
+		FlandersRedAle,
+		ForeignExtraStout,
+		FruitBeer,
+		FruitLambic,
+		FruitAndSpiceBeer,
+		GermanHellesExportbier,
+		GermanLeichtbier,
+		GermanPils,
+		Gose,
+		GrapeAle,
+		Gueuze,
+		HazyIPA,
+		HellesBock,
+		HistoricalBeerKellerbier,
+		HistoricalBeerKentuckyCommon,
+		HistoricalBeerLichtenhainer,
+		HistoricalBeerLondonBrownAle,
+		HistoricalBeerPiwoGrodziskie,
+		HistoricalBeerPreProhibitionLager,
+		HistoricalBeerPreProhibitionPorter,
+		HistoricalBeerRoggenbier,
+		HistoricalBeerSahti,
+		ImperialStout,
+		InternationalAmberLager,
+		InternationalDarkLager,
+		InternationalPaleLager,
+		IrishExtraStout,
+		IrishRedAle,
+		IrishStout,
+		Kolsch,
+		Lambic,
+		Marzen,
+		MixedFermentationSourBeer,
+		MixedStyleBeer,
+		MunichDunkel,
+		MunichHelles,
+		OatmealStout,
+		OldAle,
+		OrdinaryBitter,
+		OudBruin,
+		Rauchbier,
+		Saison,
+		Schwarzbier,
+		ScottishExport,
+		ScottishHeavy,
+		ScottishLight,
+		SpecialtyFruitBeer,
+		SpecialtyIPA,
+		SpecialtySmokedBeer,
+		SpecialtySpiceBeer,
+		SpecialtyWoodAgedBeer,
+		SpiceHerbOrVegetableBeer,
+		StraightSourBeer,
+		StrongBitter,
+		SweetStout,
+		TropicalStout,
+		ViennaLager,
+		WeeHeavy,
+		Weissbier,
+		Weizenbock,
+		Wheatwine,
+		WildSpecialtyBeer,
+		WinterSeasonalBeer,
+		Witbier,
+		WoodAgedBeer:
+		return true
+	default:
+		return false
+	}
+}
+
+// ParseStyle parses a string into a  beer Style
+func ParseStyle(s string) (Style, error) {
+	style := Style(s)
+	if !style.IsValid() {
+		return "", ErrInvalidStyle
+	}
+	return style, nil
+}
+
 // String returns the string value of a beer Style.
 func (s Style) String() string {
 	return string(s)
+}
+
+// Equals checks if two Style values are equal
+func (s Style) Equals(other Style) bool {
+	return s == other
 }
